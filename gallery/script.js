@@ -17,6 +17,16 @@ req.onreadystatechange = function(){
             this.classList.toggle("image-selected");
         
         }
+        div.onmouseover = function(){
+            var element = this;
+            this.timeId = setTimeout(function(){
+                element.classList.add("image-magnified");
+
+            },1000);
+        }
+        div.onmouseout = function(){
+            this.classList.remove("image-magnified");
+        }
             var img = document.createElement("img");
             img.src=data[i];
             div.appendChild(img);
@@ -42,4 +52,21 @@ if(btn.value == "Unselect All"){
 }else{
 btn.value = "Unselect All";
 }
+}
+function slideShow(btn){
+    var index =0 ;
+    var images = document.getElementsByClassName("image");
+    images[0].classList.add("image-magnified");
+    setInterval(function(){
+        images[index].classList.remove("image-magnified");
+        index++
+        if(index < images.length){
+            images[index].classList.add("image-magnified");
+        
+        }
+        else{
+            clearInterval(intervalId);
+        }
+
+    },1000);
 }
